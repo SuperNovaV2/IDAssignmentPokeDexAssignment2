@@ -1,5 +1,7 @@
 const poke_container = document.getElementById('poke_container');
+// Number of Pokemons
 const pokemons_number = 150;
+// Color coding for different pokemon types
 const colors = {
     fire: '#FDDFDF',
     grass: '#DEFDE0',
@@ -16,6 +18,8 @@ const colors = {
     fighting: '#E6E0D4',
     normal: 'F5F5F5'
 };
+
+const main_types = Object.keys(colors);
 
 // To call all 150 pokemon 1 by 1
 const fetchPokemon = async () => {
@@ -35,18 +39,25 @@ function createPokemonCard(pokemon){
     const pokemonEl = document.createElement("div");
     pokemonEl.classList.add('pokemon');
 
+    // Extract the more common/main pokemon type for color coding
+    const poke_types = pokemon.types.map(el => el.type.name);
+    //This essentially goes over the all the main types ive put above and finds the 1st one from the array in poke_types which is from the api this is to find out the main type the pokemon is
+    const type = main_types.find(type => poke_types.indexOf(type) > -1);
     // Make first letter of names uppercase from everything after 1
     const pokeName = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+    const color = colors[type];
+    pokemonEl.style.backgroundColor = color;
     // I use another api here for images as the images in the original api are not nice
     const pokeInnerHtml =  `
     <div class = "img-container">
-        <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png"
+        <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="${pokeName}" />
     </div>
     <div class = "info">
-    <span class ="number">${pokemon.id}</span>
-    <h3 class="name">${pokeName}</h3>
-    <small class ="type">Type: <span>${type}</span></small>
-    </div>`;
+        <span class ="number">${pokemon.id.toString().padStart(3,'0')}</span>
+        <h3 class="name">${pokeName}</h3>
+        <small class ="type">Type: <span>${type}</span></small>
+    </div>
+    `;
     pokemonEl.innerHTML = pokeInnerHtml
     poke_container.appendChild(pokemonEl);
 }
