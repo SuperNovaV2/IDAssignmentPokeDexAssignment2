@@ -6,18 +6,18 @@ const pokemons_number = 151;
 const colors = {
     fire: '#FDDFDF',
     grass: '#DEFDE0',
-    electric: '#FCF7DE',
+    electric: '#Fff1ba',
     water: '#DEF3FD',
     ground: '#f4e7da',
     rock: '#d5d5d4',
     fairy: '#fceaff',
-    posion: '#98d7a5',
-    bug: '#f8d5a3',
+    poison: '#f7cdf7',
+    bug: '#e0e8a2',
     dragon: '#97b3e6',
-    psychic: '#eaeda1',
-    flying: '#F5F5F5',
+    psychic: '#ffc9da',
+    flying: '#eae3ff',
     fighting: '#E6E0D4',
-    normal: 'F5F5F5'
+    normal: '#F5F5F5'
 };
 
 const main_types = Object.keys(colors);
@@ -41,7 +41,7 @@ function createPokemonCard(pokemon){
     pokemonEl.classList.add('pokemon');
 
     // Extract the more common/main pokemon type for color coding
-    const poke_types = pokemon.types.map(el => el.type.name);
+    const poke_types = pokemon.types.map(type => type.type.name);
     //This essentially goes over the all the main types ive put above and finds the 1st one from the array in poke_types which is from the api this is to find out the main type the pokemon is
     const type = main_types.find(type => poke_types.indexOf(type) > -1);
     // Make first letter of names uppercase from everything after 1
@@ -57,7 +57,7 @@ function createPokemonCard(pokemon){
     <div class = "info">
         <span class ="number">#${pokemon.id.toString().padStart(3,'0')}</span>
         <h3 class="name">${pokeName}</h3>
-        <small class ="type">Type: <span>${type}</span></small>
+        <small class ="type"><span>${type[0].toUpperCase() + type.slice(1)}</span></small>
     </div>
     </div>
     `;
@@ -86,9 +86,11 @@ const displayPopup = (pokemon) =>{
     const color = colors[type];
     popup.style.backgroundColor = color;
     const typeAll = pokemon.types.map((type) =>
-    type.type.name).join(' and ');
+    type.type.name).join(' / ')
+    .replace(/\b\w/g, (ch) => ch.toUpperCase());
     const ability = pokemon.abilities.map((ability) =>
-    ability.ability.name).join(' and ');
+    ability.ability.name).join(' / ')
+    .replace(/\b\w/g, (ch) => ch.toUpperCase());
     const pokeInfo = `
     <div class = "basic-info">
     <span class ="number">#${pokemon.id.toString().padStart(3,'0')}</span>
