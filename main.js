@@ -75,13 +75,21 @@ const selectPokemon = async (id) => {
 
 const displayPopup = (pokemon) =>{
     $("#poke_container").empty();
+    const popup = document.createElement("div");
+    popup.classList.add('pokemon-popup');
+    // Extract the more common/main pokemon type for color coding
+    const poke_types = pokemon.types.map(el => el.type.name);
+    //This essentially goes over the all the main types ive put above and finds the 1st one from the array in poke_types which is from the api this is to find out the main type the pokemon is
+    const type = main_types.find(type => poke_types.indexOf(type) > -1);
+    // Make first letter of names uppercase from everything after 1
     const pokeName = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
-    const type = pokemon.types.map((type) =>
+    const color = colors[type];
+    popup.style.backgroundColor = color;
+    const typeAll = pokemon.types.map((type) =>
     type.type.name).join(' and ');
     const ability = pokemon.abilities.map((ability) =>
     ability.ability.name).join(' and ');
-    const htmlString = `
-    <div class="popup">
+    const pokeInfo = `
     <div class = "basic-info">
     <span class ="number">#${pokemon.id.toString().padStart(3,'0')}</span>
         <h3 class="name">${pokeName}</h3>
@@ -92,33 +100,34 @@ const displayPopup = (pokemon) =>{
     </div>
     <div class = "info">
         <p><small>Type</small></p>   
-        <p><small class ="type"><span>${type}</span></small></p>
+        <p><small class ="type"><span>${typeAll}</span></small></p>
         <p><small>Height: </small>${pokemon.height} | <small>Weight: </small>${pokemon.weight}</p>
         <p><small>Ability: </small>${ability}
     </div>
-
-    </div>
     `
     var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
+    var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'doughnut',
+    type: 'bar',
 
     // The data for our dataset
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: [pokemon.stats[0].stat.name,pokemon.stats[1].stat.name,pokemon.stats[2].stat.name,pokemon.stats[3].stat.name,pokemon.stats[4].stat.name],
         datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
+            label: 'Status',
+            backgroundColor: ['#A569BD','#3498DB','#16A085','#E74C3C','#F39C12'],
+            borderColor: ['#A569BD','#3498DB','#16A085','#E74C3C','#F39C12'],
+            data: [pokemon.stats[0].base_stat,pokemon.stats[1].base_stat,pokemon.stats[2].base_stat,pokemon.stats[3].base_stat,pokemon.stats[4].base_stat]
+
         }]
     },
 
     // Configuration options go here
-    options: {}
+    options: {
+    }
 });
-    poke_container.innerHTML = htmlString;
+    popup.innerHTML = pokeInfo;
+    poke_container.appendChild(popup);
     console.log(pokemon);
 }
 
