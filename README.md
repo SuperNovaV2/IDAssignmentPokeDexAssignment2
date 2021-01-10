@@ -63,7 +63,7 @@ Bar chart - This bar chart will be in the indepth pokemoncard where you will be 
     - Ensure that main page it is responsive for phones and displayed properly (eg used IPhone8 Plus)
     - Ensure that information in pokecard when clicked is responsive and displayed properly (eg ysed IPhone8 Plus)
 # Deployment
-    - [Page is here](https://supernovav2.github.io/IDAssignmentPokeDexAssignment2/)
+ [Page is here](https://supernovav2.github.io/IDAssignmentPokeDexAssignment2/)
     - Downloading this website locally:
         - After signing into GitHub/Making a new account clone the project
         - Download the code and open the website through a source-code editor like visual studio code
