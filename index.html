@@ -4,12 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
-    <title>Pokedex</title>
+    <title>Pokédex</title>
   </head>
   <body>
-      <h1>PokeDex</h1>
-      <div class = "search-box">
-        <input type ="text" id="search" name="" placeholder="Type to search"> <input type="submit" id="submit-button1" value="Submit">  
+      <h1>PokéDex</h1>
+      <div class="wrapper" id="search-bar">
+        <div class="container">
+          <input type="text" id="search" class="input" placeholder="Pokemon Name">
+          <input type="button" id="submit-button1" value="search" class="close-btn">
+        </div>
       </div>
       <div id="cntr">  
         <label for="opt1" class="radio">
@@ -44,7 +47,7 @@
           <input type="radio" name="rdo" id="opt8" class="hidden" value="galar"/>
           <span class="label"></span>Galar
         </label>
-        <input type="submit" id="submit-button" value="Submit">                                
+        <input type="submit" id="submit-button" class="form-submit-button" value="Submit">                                
       </div>
       <!-- Wrapper for all the pokemons -->
       <div id="poke_container" class= "poke-container">

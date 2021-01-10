@@ -137,6 +137,7 @@ const selectPokemon = async (id) => {
 const displayPopup = async (pokemon) =>{
     $("#poke_container").empty();
     $("#cntr").addClass('hidden');
+    $("#search-bar").addClass('hidden');    
     const popup = document.createElement("div");
     popup.classList.add('pokemon-popup');
     // Extract the more common/main pokemon type for color coding
@@ -160,7 +161,7 @@ const displayPopup = async (pokemon) =>{
     <span class ="number">#${pokemon.id.toString().padStart(3,'0')}</span>
         <h3 class="name">${pokeName}</h3>
     </div>
-        <button id="closeBtn" onclick="closePopup()">Close</button>
+        <button id="closeBtn" onclick="closePopup()">Back</button>
     <div class = "img-container2">
         <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="${pokeName}"/>
     </div>
@@ -203,6 +204,7 @@ const createChart = (pokemon) =>{
 
 const closePopup = () =>{
     $("#cntr").removeClass('hidden');
+    $("#search-bar").removeClass('hidden'); 
     $("#poke_container").empty();
     $("#myChart").remove();
     const newChart = document.createElement("canvas");
