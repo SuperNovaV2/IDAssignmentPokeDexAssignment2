@@ -146,7 +146,7 @@ const selectPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
     const pokemon = await res.json();
-//Set timeout here is to ensure that everything is loaded before continuing or it causes errors hence it takes 5 seconds to load before proceeding
+//Set timeout here is to ensure that everything is loaded before continuing or it causes errors hence it takes 3 seconds to load before proceeding
     setTimeout(() => {
         displayPopup(pokemon);
     }, 3000);
