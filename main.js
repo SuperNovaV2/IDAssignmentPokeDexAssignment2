@@ -92,6 +92,14 @@ const fetchPokemon = async (region) => {
 const searchgetPokemon = async (pokemonName) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     const res = await fetch(url);
+    if (res.status !== 200)
+    {
+        const errorMessage = document.createElement("div");
+        errorMessage.classList.add('errorMessage');
+        const errorHtml = `Did you enter the name/id correctly? Try again.`;
+        errorMessage.innerHTML = errorHtml;
+        poke_container.appendChild(errorMessage);
+    }
     const pokemon =  await res.json();
     createPokemonCard(pokemon);
 };
@@ -141,7 +149,7 @@ const selectPokemon = async (id) => {
 //Set timeout here is to ensure that everything is loaded before continuing or it causes errors hence it takes 5 seconds to load before proceeding
     setTimeout(() => {
         displayPopup(pokemon);
-    }, 5000);
+    }, 3000);
 };
 
 //Code for what shows when clicking on a pokemoncard
@@ -197,7 +205,7 @@ const createChart = (pokemon) =>{
 
     // The data for our dataset
     data: {
-        labels: [pokemon.stats[0].stat.name,pokemon.stats[1].stat.name,pokemon.stats[2].stat.name,pokemon.stats[3].stat.name,pokemon.stats[4].stat.name],
+        labels: [pokemon.stats[0].stat.name.replace(/\b\w/g, (ch) => ch.toUpperCase()),pokemon.stats[1].stat.name.replace(/\b\w/g, (ch) => ch.toUpperCase()),pokemon.stats[2].stat.name.replace(/\b\w/g, (ch) => ch.toUpperCase()),pokemon.stats[3].stat.name.replace(/\b\w/g, (ch) => ch.toUpperCase()),pokemon.stats[4].stat.name.replace(/\b\w/g, (ch) => ch.toUpperCase())],
         datasets: [{
             label: 'Stats',
             backgroundColor: ['#A569BD','#3498DB','#16A085','#E74C3C','#F39C12'],

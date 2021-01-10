@@ -287,5 +287,25 @@ button:hover{
     box-shadow: 5px 5px 5px #eee;
     text-shadow:none;
     }
+
+    .errorMessage{
+        margin-top: 50px;
+        font-size: 20px;
+    }
     
+    @media screen and (max-width: 576px){
+        .form-submit-button{
+            margin-left: 160px;
+            
+        }
+        .poke-container{
+            max-width: 300px;
+        }
+        #closeBtn{
+            margin-right: 145px;
+        }
+        h1{
+            padding: 40px;
+        }
+    }
     
