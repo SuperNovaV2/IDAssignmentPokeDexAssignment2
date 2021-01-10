@@ -8,7 +8,44 @@
   </head>
   <body>
       <h1>PokeDex</h1>
-      
+      <div class = "search-box">
+        <input type ="text" id="search" name="" placeholder="Type to search"> <input type="submit" id="submit-button1" value="Submit">  
+      </div>
+      <div id="cntr">  
+        <label for="opt1" class="radio">
+          <input type="radio" name="rdo" id="opt1" class="hidden" value="kanto" checked="checked"/>
+          <span class="label"></span>Kanto
+        </label>        
+        <label for="opt2" class="radio">
+          <input type="radio" name="rdo" id="opt2" class="hidden" value="johto"/>
+          <span class="label"></span>Johto
+        </label>        
+        <label for="opt3" class="radio">
+          <input type="radio" name="rdo" id="opt3" class="hidden" value="hoenn"/>
+          <span class="label"></span>Hoenn
+        </label>
+        <label for="opt4" class="radio">
+          <input type="radio" name="rdo" id="opt4" class="hidden" value="sinnoh"/>
+          <span class="label"></span>Sinnoh
+        </label>
+        <label for="opt5" class="radio">
+          <input type="radio" name="rdo" id="opt5" class="hidden" value="unova"/>
+          <span class="label"></span>Unova
+        </label>
+        <label for="opt6" class="radio">
+          <input type="radio" name="rdo" id="opt6" class="hidden" value="kalos"/>
+          <span class="label"></span>Kalos
+        </label>
+        <label for="opt7" class="radio">
+          <input type="radio" name="rdo" id="opt7" class="hidden" value="alola"/>
+          <span class="label"></span>Alola
+        </label>
+        <label for="opt8" class="radio">
+          <input type="radio" name="rdo" id="opt8" class="hidden" value="galar"/>
+          <span class="label"></span>Galar
+        </label>
+        <input type="submit" id="submit-button" value="Submit">                                
+      </div>
       <!-- Wrapper for all the pokemons -->
       <div id="poke_container" class= "poke-container">
       </div>
