@@ -1,4 +1,4 @@
-<html lang="en">
+<!DOCTYPE html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,12 +8,14 @@
   </head>
   <body>
       <h1>PokéDex</h1>
+      <!-- Pokemon Search Bar-->
       <div class="wrapper" id="search-bar">
         <div class="container">
           <input type="text" id="search" class="input" placeholder="Pokemon Name">
           <input type="button" id="submit-button1" value="search" class="close-btn">
         </div>
       </div>
+      <!-- Various pokemon regions you can filter by (Radio button)-->
       <div id="cntr">  
         <label for="opt1" class="radio">
           <input type="radio" name="rdo" id="opt1" class="hidden" value="kanto" checked="checked"/>
@@ -52,6 +54,7 @@
       <!-- Wrapper for all the pokemons -->
       <div id="poke_container" class= "poke-container">
       </div>
+      <!-- Chart for status when you click on pokemon-->
       <canvas id="myChart"></canvas>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

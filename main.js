@@ -24,8 +24,10 @@ const colors = {
 };
 
 const main_types = Object.keys(colors);
+//Display when first arrive on site
 const region = ($("input[name=rdo]:checked").val());
 
+//Search for pokemon code
 $("#submit-button1").on("click", function(event){
     event.preventDefault();
     const pokemonName = $("#search").val()
@@ -34,6 +36,7 @@ $("#submit-button1").on("click", function(event){
     searchgetPokemon(pokemonName);   
 });      
 
+//Search by pokemon region code
 $("#submit-button").on("click", function(event){
     event.preventDefault();
     const region = ($("input[name=rdo]:checked").val());
@@ -41,7 +44,7 @@ $("#submit-button").on("click", function(event){
     fetchPokemon(region);
 });       
 
-// To call pokemon
+// To call pokemon dependent on region chosen
 const fetchPokemon = async (region) => {
     if (region == 'kanto'){
         for (let i=1; i<=151; i++){
@@ -85,6 +88,7 @@ const fetchPokemon = async (region) => {
 }
 };
 
+//Code for searching of pokemon by search bar
 const searchgetPokemon = async (pokemonName) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     const res = await fetch(url);
@@ -92,6 +96,7 @@ const searchgetPokemon = async (pokemonName) => {
     createPokemonCard(pokemon);
 };
 
+//Code for searching of pokemon by regions
 const getPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
@@ -99,6 +104,7 @@ const getPokemon = async (id) => {
     createPokemonCard(pokemon);
 };
 
+//Creation of each pokemon card with basic information
 function createPokemonCard(pokemon){
     const pokemonEl = document.createElement("div");
     pokemonEl.classList.add('pokemon');
@@ -125,17 +131,20 @@ function createPokemonCard(pokemon){
     `;
     pokemonEl.innerHTML = pokeInnerHtml;
     poke_container.appendChild(pokemonEl);
-};
+}
 
+//Code for what happens when you click on a pokemoncard
 const selectPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
     const pokemon = await res.json();
+//Set timeout here is to ensure that everything is loaded before continuing or it causes errors hence it takes 5 seconds to load before proceeding
     setTimeout(() => {
         displayPopup(pokemon);
     }, 5000);
 };
 
+//Code for what shows when clicking on a pokemoncard
 const displayPopup = async (pokemon) =>{
     $("#poke_container").empty();
     $("#cntr").addClass('hidden');
@@ -156,8 +165,8 @@ const displayPopup = async (pokemon) =>{
     const ability = pokemon.abilities.map((ability) =>
     ability.ability.name).join(' / ')
     .replace(/\b\w/g, (ch) => ch.toUpperCase());
-    const height = (pokemon.height / 10) + "m"
-    const weight = (pokemon.weight / 10) + "kg"
+    const height = (pokemon.height / 10) + "m";
+    const weight = (pokemon.weight / 10) + "kg";
     const pokeInfo = `
     <div class = "basic-info">
     <span class ="number">#${pokemon.id.toString().padStart(3,'0')}</span>
@@ -173,12 +182,13 @@ const displayPopup = async (pokemon) =>{
         <p>Height: <small>${height}</small> | Weight: <small>${weight}</small></p>
         <p>Ability: ${ability}</p>
     </div>
-    `
+    `;
     popup.innerHTML = pokeInfo;
     poke_container.appendChild(popup);
     createChart(pokemon);
 };
 
+//Code for the chart for stats
 const createChart = (pokemon) =>{
     var ctx = document.getElementById('myChart').getContext('2d');
     const chart = new Chart(ctx, {
@@ -189,7 +199,7 @@ const createChart = (pokemon) =>{
     data: {
         labels: [pokemon.stats[0].stat.name,pokemon.stats[1].stat.name,pokemon.stats[2].stat.name,pokemon.stats[3].stat.name,pokemon.stats[4].stat.name],
         datasets: [{
-            label: 'Status',
+            label: 'Stats',
             backgroundColor: ['#A569BD','#3498DB','#16A085','#E74C3C','#F39C12'],
             borderColor: ['#A569BD','#3498DB','#16A085','#E74C3C','#F39C12'],
             data: [pokemon.stats[0].base_stat,pokemon.stats[1].base_stat,pokemon.stats[2].base_stat,pokemon.stats[3].base_stat,pokemon.stats[4].base_stat]
@@ -204,6 +214,7 @@ const createChart = (pokemon) =>{
 
 };
 
+//Code for going back to search for pokemon
 const closePopup = () =>{
     $("#cntr").removeClass('hidden');
     $("#search-bar").removeClass('hidden'); 
@@ -213,8 +224,9 @@ const closePopup = () =>{
     newChart.id = "myChart";
     document.body.appendChild(newChart);
     fetchPokemon(region);
-}
+};
 
+//Code for displaying when arriving on site
 fetchPokemon(region);
 
 
