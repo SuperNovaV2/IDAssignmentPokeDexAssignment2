@@ -45,42 +45,42 @@ $("#submit-button").on("click", function(event){
 const fetchPokemon = async (region) => {
     if (region == 'kanto'){
         for (let i=1; i<=151; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'johto'){
         for (let i=152; i<=251; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'hoenn'){
         for (let i=252; i<=386; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'sinnoh'){
         for (let i=387; i<=487; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'unova'){
         for (let i=494; i<=649; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'kalos'){
         for (let i=650; i<=718; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'alola'){
         for (let i=722; i<=807; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
     else if (region == 'galar'){
         for (let i=810; i<=890; i++){
-        getPokemon(i);
+        await getPokemon(i);
     }
 }
 };
@@ -96,7 +96,7 @@ const getPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
     const pokemon =  await res.json();
-     await createPokemonCard(pokemon);
+    createPokemonCard(pokemon);
 };
 
 function createPokemonCard(pokemon){
@@ -131,7 +131,9 @@ const selectPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
     const pokemon = await res.json();
-    displayPopup(pokemon);
+    setTimeout(() => {
+        displayPopup(pokemon);
+    }, 5000);
 };
 
 const displayPopup = async (pokemon) =>{
