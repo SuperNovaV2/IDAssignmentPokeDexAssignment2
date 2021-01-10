@@ -29,7 +29,7 @@ const fetchPokemon = async () => {
     }
 };
 
-const getPokemon = async id => {
+const getPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
     const pokemon =  await res.json();
@@ -107,8 +107,15 @@ const displayPopup = (pokemon) =>{
         <p><small>Ability: </small>${ability}
     </div>
     `
+    popup.innerHTML = pokeInfo;
+    poke_container.appendChild(popup);
+    createChart(pokemon);
+    console.log(pokemon);
+}
+
+const createChart = (pokemon) =>{
     var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+    const chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'bar',
 
@@ -128,12 +135,21 @@ const displayPopup = (pokemon) =>{
     options: {
     }
 });
-    popup.innerHTML = pokeInfo;
-    poke_container.appendChild(popup);
-    console.log(pokemon);
-}
+
+};
 
 fetchPokemon();
+
+const closePopup = (chart) =>{
+    $("#poke_container").empty();
+    $("#myChart").remove();
+    const newChart = document.createElement("canvas");
+    newChart.id = "myChart";
+    document.body.appendChild(newChart);
+    fetchPokemon();
+}
+
+
 
 
 
