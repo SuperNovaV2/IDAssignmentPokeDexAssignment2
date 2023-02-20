@@ -182,7 +182,7 @@ const displayPopup = async (pokemon) =>{
     </div>
         <button id="closeBtn" onclick="closePopup()">Back</button>
     <div class = "img-container2">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" alt="${pokeName}"/>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" alt="${pokeName}" style= width:250px/>
     </div>
     <div class = "info2">
         <p>Type</p>   
