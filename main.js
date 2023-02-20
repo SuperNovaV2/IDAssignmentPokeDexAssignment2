@@ -128,7 +128,7 @@ function createPokemonCard(pokemon){
     const pokeInnerHtml =  `
     <div class = "card" onclick="selectPokemon(${pokemon.id})">
     <div class = "img-container">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon.id}.png" alt="${pokeName}" />
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" alt="${pokeName}" />
     </div>
     <div class = "info">
         <span class ="number">#${pokemon.id.toString().padStart(3,'0')}</span>
@@ -182,7 +182,7 @@ const displayPopup = async (pokemon) =>{
     </div>
         <button id="closeBtn" onclick="closePopup()">Back</button>
     <div class = "img-container2">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon.id}.png" alt="${pokeName}"/>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" alt="${pokeName}"/>
     </div>
     <div class = "info2">
         <p>Type</p>   
